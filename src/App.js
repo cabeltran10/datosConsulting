@@ -10,67 +10,15 @@ class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount() {
-    fetch(this.value)
-      .then(res => res.json())
-      .then(json => {
-        this.setState({
-          isLoaded: true,
-          items: json
-        });
-      });
-  }
-
-  handleChange(event) {
-    this.setState({ value: event.target.value, isLoaded: true });
-  }
-
-  handleSubmit(event) {
-    alert("A name was submitted: " + this.state.value);
-    event.preventDefault();
+  onChange() {
+    console.log(this.state);
+    this.setState({
+      inValue: this.myIn=value
+    })
   }
 
   render() {
-    var { isLoaded, items } = this.state;
-    if (!isLoaded) {
-      return (
-        <div>
-          <form onSubmit={this.handleSubmit}>
-            <label>
-              Link:
-              <input
-                type="text"
-                value={this.state.value}
-                onChange={this.handleChange}
-              />
-            </label>
-            <input type="submit" value="Submit" />
-          </form>
-        </div>
-      );
-    }
-    return (
-      <div className="App">
-        <form onSubmit={this.handleSubmit}>
-            <label>
-              Link:
-              <input
-                type="text"
-                value={this.state.value}
-                onChange={this.handleChange}
-              />
-            </label>
-            <input type="submit" value="Submit" />
-          </form>
-        <ul>
-          {items.map(item => (
-            <li key={item.id}>
-              Name: {item.no} | Email: {item.departamento}
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
+    
   }
 }
 
