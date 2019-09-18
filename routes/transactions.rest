@@ -1,0 +1,16 @@
+
+GET http://localhost:5000/transactions
+
+
+###
+
+POST http://localhost:5000/transactions
+content-type:application/json
+
+{
+    "url": "https://www.datos.gov.co/resource/5wck-szir.json"
+}
+
+###
+
+GET http://localhost:5000/transactions/5d81cfac67ca432d88d1626f
