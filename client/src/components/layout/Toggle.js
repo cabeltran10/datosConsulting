@@ -13,7 +13,7 @@ const Toggle = () => {
   return (
     <div>
       <animated.h1 style={fade}>I take a lot but.. IT WORKS!!!</animated.h1>
-      <button onClick={() => setToggle(!isToggled)}>Show Creative</button>
+      <button className="btn" onClick={() => setToggle(!isToggled)}>Show Creative</button>
     </div>
   );
 };

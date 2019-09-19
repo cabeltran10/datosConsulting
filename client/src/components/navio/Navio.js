@@ -17,9 +17,7 @@ class Navio extends Component {
   }
 
   render() {
-    return (
-      <div ref={myDiv => this.myDiv = myDiv} />
-    );
+    return <div ref={myDiv => (this.myDiv = myDiv)} />;
   }
 }
 

@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { BrowserRouter as Router, Route } from "react-router-dom"
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import "./App.css";
 
 import Header from "./components/layout/Header";
-import Loader from "./components/navio/Loader"
-import Transactions from "./components/transactions/Transactions"
-import LoaderTransaction from "./components/transactions/LoaderTransaction"
-import Toggle from "./components/layout/Toggle"
+import Loader from "./components/navio/Loader";
+import Transactions from "./components/transactions/Transactions";
+import LoaderTransaction from "./components/transactions/LoaderTransaction";
+import Toggle from "./components/layout/Toggle";
 
 class App extends Component {
   constructor(props) {
@@ -32,27 +32,17 @@ class App extends Component {
       .then(res => this.setState({ transactions: res.data }));
   }
 
-  // Toggle Complete
-  markComplete = id => {
-    this.setState({
-      transactions: this.state.transactions.map(transaction => {
-        if (transaction.id === id) {
-          transaction.completed = !transaction.completed;
-        }
-        return transaction;
-      })
-    });
-  };
-
   // ChooseData
-  chooseData = (url) => {
+  chooseData = url => {
     axios
       .get(url)
       .then(res => {
-        this.setState({ data: res.data })
+        this.setState({ data: res.data });
       })
-      .catch(() => { alert("The API URL is not valid") })
-  }
+      .catch(() => {
+        alert("The API URL is not valid");
+      });
+  };
 
   render() {
     return (
@@ -64,31 +54,32 @@ class App extends Component {
             <Route
               exact
               path="/"
-              render={(props) => (
+              render={props => (
                 <React.Fragment>
                   <Loader />
                 </React.Fragment>
               )}
             />
             <Route
-              path='/transactionsHistory'
-              render={(props) => (
+              path="/transactionsHistory"
+              render={props => (
                 <React.Fragment>
                   <h1>All Transactions</h1>
-                  <p>Scroll down to see all the transactions</p>
-                  <LoaderTransaction
-                    data={this.state.data}
-                  />
+                  <p>
+                    Scroll down to see all the transactions
+                    <br />
+                    Some transactions are repeat, this is because each time you
+                    make a submit the transaction will be save in the database.
+                  </p>
+                  <LoaderTransaction data={this.state.data} />
                   <Transactions
                     transactions={this.state.transactions}
-                    markComplete={this.markComplete}
                     loadData={this.loadData}
                     chooseData={this.chooseData}
                   />
                 </React.Fragment>
               )}
             />
-
           </div>
         </div>
       </Router>

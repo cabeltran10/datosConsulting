@@ -1,11 +1,17 @@
 import React from "react";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
     <header style={headerStyle}>
       <h1>Data Consulting</h1>
-      <Link style={linkStyle} to="/">Home</Link> | <Link style={linkStyle} to="/transactionsHistory">Transactions</Link>
+      <Link style={linkStyle} to="/">
+        Home
+      </Link>{" "}
+      |{" "}
+      <Link style={linkStyle} to="/transactionsHistory">
+        Transactions
+      </Link>
     </header>
   );
 }
@@ -18,8 +24,8 @@ const headerStyle = {
 };
 
 const linkStyle = {
-  color: '#fff',
-  textDecoration: 'none'
-}
+  color: "#fff",
+  textDecoration: "none"
+};
 
 export default Header;
