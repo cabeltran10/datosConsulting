@@ -71,7 +71,7 @@ class App extends Component {
               )}
             />
             <Route
-              path='/transactions'
+              path='/transactionsHistory'
               render={(props) => (
                 <React.Fragment>
                   <h1>All Transactions</h1>

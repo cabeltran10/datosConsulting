@@ -2,6 +2,10 @@
 
 > Create a little web application to see some data from datos.gov.co using navio
 
+## Requirements
+
+In your computer you need to have installed Node.js, for installation just go [here](https://nodejs.org/es/), having that you can just continue with the Quick Start
+
 ## Quick Start
 
 ```bash
