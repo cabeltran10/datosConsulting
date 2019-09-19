@@ -15,31 +15,62 @@ class Loader extends Component {
             data: [],
             url: "",
             cont: 1,
-            status: false
+            markAll: false
         };
-    }
-
-    // Methods
-
-    markAll = () => {
-        this.setState((actual) => {
-            actual.status = !actual.status;
-        })
     }
 
     onChange = (e) => {
         this.setState({ url: e.target.value })
     }
 
-    chooseData = () => {
-        if (!this.state.status) {
-            axios
+    chooseData = async () => {
+        if (!this.state.markAll) {
+            await axios
                 .get(this.state.url)
-                .then(res => this.setState({ data: res.data }))
+                .then(res => {
+                    this.setState({ data: res.data })
+                })
                 .catch(() => { alert("The API URL is not valid") })
         } else {
-            console.log("Falta")
+            let pData = [];
+            while (true) {
+                let data = []
+                await axios.get(this.state.url + "?$limit=1000&$offset=" + this.state.cont * 1000)
+                    .then(res => {
+                        data = res.data;
+                    })
+                    .catch(() => alert("The API URL is not valid"))
+
+                if (data.length === 0) {
+                    break
+                } else {
+                    let cont = this.state.cont;
+                    cont++;
+                    this.setState({
+                        cont
+                    })
+                    pData = pData.concat(data)
+                }
+            }
+            this.setState({
+                data: this.state.data.concat(pData)
+            })
         }
+        this.addTransaction();
+    }
+
+    // Add Todo
+    addTransaction = () => {
+        axios
+            .post("http://localhost:5000/transactions ", {
+                "url": this.state.url
+            });
+    };
+
+    markAll = () => {
+        this.setState((actual) => {
+            actual.markAll = !actual.markAll;
+        })
     }
 
     // Style
@@ -90,7 +121,7 @@ class Loader extends Component {
                                 onChange={this.onChange}
                                 onKeyPress={event => {
                                     if (event.key === 'Enter') {
-                                        this.chooseData()
+                                        this.chooseData();
                                     }
                                 }}
                             />
@@ -108,7 +139,7 @@ class Loader extends Component {
                 <div className="container navioRow" >
                     <Navio data={this.state.data} />
                 </div>
-            </React.Fragment>
+            </React.Fragment >
         );
     }
 }

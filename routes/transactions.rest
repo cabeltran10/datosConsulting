@@ -4,7 +4,7 @@ GET http://localhost:5000/transactions
 
 ###
 
-POST http://localhost:5000/transactions
+POST http://localhost:5000/transactions 
 content-type:application/json
 
 {
