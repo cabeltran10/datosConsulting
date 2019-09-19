@@ -4,7 +4,7 @@
 
 ## How it looks
 
-![GitDataConsultinsg]()
+![GitDataConsultinsg](https://raw.githubusercontent.com/cabeltran10/datosConsulting/master/img/SreenShotGif.gif)
 
 ## Requirements
 
