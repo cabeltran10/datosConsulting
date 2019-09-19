@@ -62,7 +62,7 @@ class Loader extends Component {
     // Add Todo
     addTransaction = () => {
         axios
-            .post("http://localhost:5000/transactions ", {
+            .post("/transactions ", {
                 "url": this.state.url
             });
     };

@@ -28,7 +28,7 @@ class App extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/transactions")
+      .get("/transactions")
       .then(res => this.setState({ transactions: res.data }));
   }
 

@@ -10,7 +10,7 @@ const app = express();
 
 // Connecting to database
 let db;
-MongoClient.connect(process.env.DATABASE_URL || "mongodb://localhost/quenota",
+MongoClient.connect(process.env.DATABASE_URL,
     (err, database) => {
         if (err) return console.log(err);
 
@@ -32,7 +32,7 @@ app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
-app.use(expressMongoDb(process.env.DATABASE_URL || "mongodb://localhost/quenota"))
+app.use(expressMongoDb(process.env.DATABASE_URL))
 
 // Importing Routes
 const transactionRouter = require("./routes/transactionRouter");
